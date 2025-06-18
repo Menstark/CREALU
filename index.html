@@ -3,18 +3,24 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Fiche CREALU - Phase Finale</title>
+  <title>CREALU - Fiche Prise de Mesure</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Fiche CREALU - Phase Finale (Démo)</h1>
-  <ul>
-    <li>✅ Suppression / Repli des éléments</li>
-    <li>✅ Signature client tactile</li>
-    <li>✅ Génération PDF trié par pièce/produit</li>
-    <li>✅ Envoi automatique à alexandre@crealu.com</li>
-    <li>✅ Ajout de photos par produit</li>
-    <li>✅ Validation intelligente avant envoi</li>
-  </ul>
-  <p>(Version démonstration - code complet à intégrer dans un framework ou déployer avec backend/email/PDF)</p>
+  <h1>Fiche de Prise de Mesure CREALU</h1>
+  <div id="chantier-setup">
+    <label>Référence Chantier : <input type="text" /></label>
+    <label>Adresse : <input type="text" /></label>
+    <label>Relevé par : <input type="text" /></label>
+    <label>Date : <input type="date" /></label>
+  </div>
+  <div id="pieces-container">
+    <!-- Conteneur pour les pièces -->
+  </div>
+  <button onclick="ajouterPiece()">➕ Ajouter une pièce</button>
+  <button onclick="genererPDF()">📄 Générer PDF</button>
+  <canvas id="signature" width="300" height="150" style="border:1px solid #000;"></canvas>
+  <button onclick="envoyerFormulaire()">📤 Envoyer à CREALU</button>
+  <script src="script.js"></script>
 </body>
 </html>
