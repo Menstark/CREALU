@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche de Prise de Côtes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="logo-container"><img src="logo-crealu.png" alt="Logo CREALU" /></div>
+  <div class="container">
+    <h1>Fiche de Prise de Côtes</h1>
+    <form>
+
+      <fieldset>
+        <legend>🧾 Informations Générales</legend>
+        <label>Nom du client : <input type="text" name="client_nom" required /></label>
+        <label>Adresse du chantier : <input type="text" name="adresse" required /></label>
+        <label>Date de relevé : <input type="date" name="date" required /></label>
+        <label>Relevé effectué par : <input type="text" name="releveur" required /></label>
+        <label>Type de bien :
+          <select name="type_bien" required>
+            <option value="">-- Choisir --</option>
+            <option>Appartement</option>
+            <option>Maison individuelle</option>
+            <option>Local commercial</option>
+            <option>Autre</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🪟 Type d’ouverture à relever</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="ouverture" value="Fenêtre" /> Fenêtre</label>
+          <label><input type="checkbox" name="ouverture" value="Porte-fenêtre" /> Porte-fenêtre</label>
+          <label><input type="checkbox" name="ouverture" value="Porte d’entrée" /> Porte d’entrée</label>
+          <label><input type="checkbox" name="ouverture" value="Baie vitrée" /> Baie vitrée</label>
+          <label><input type="checkbox" name="ouverture" value="Volet roulant" /> Volet roulant</label>
+          <label><input type="checkbox" name="ouverture" value="Store" /> Store</label>
+          <label><input type="checkbox" name="ouverture" value="Moustiquaire" /> Moustiquaire</label>
+          <label><input type="checkbox" name="ouverture" value="Grille métallique" /> Grille métallique</label>
+          <label><input type="checkbox" name="ouverture" value="Porte de garage" /> Porte de garage</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>📏 Prise de Côtes</legend>
+        <label>Largeur tableau (mm) : <input type="number" name="largeur" required /></label>
+        <label>Hauteur tableau (mm) : <input type="number" name="hauteur" required /></label>
+        <label>Épaisseur mur (mm) : <input type="number" name="epaisseur" required /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🧩 Pose souhaitée</legend>
+        <label>
+          <select name="pose" required>
+            <option value="">-- Choisir --</option>
+            <option>Neuf (en applique)</option>
+            <option>Rénovation (feuillure ou tunnel)</option>
+            <option>Rénovation partielle</option>
+            <option>Dépose totale</option>
+            <option>À préciser</option>
+          </select>
+        </label>
+      <label>Précisez les particularités de pose : <input type="text" name="pose_details" /></label>
+</fieldset>
+
+      <fieldset>
+        <legend>🔩 Menuiserie</legend>
+        <label>Menuiserie actuelle :
+          <select name="menuiserie_actuelle">
+            <option value="">-- Choisir --</option>
+            <option>Bois</option>
+            <option>Aluminium</option>
+            <option>PVC</option>
+            <option>Acier</option>
+            <option>Bois / Aluminium</option>
+            <option>PVC / Aluminium</option>
+            <option>Matériaux composites</option>
+          </select>
+        </label>
+        <label><input type="text" name="menuiserie_actuelle_prec" placeholder="Précision..." /></label>
+
+        
+      </fieldset>
+
+      <fieldset>
+        <legend>🪞 Type de volet (si présent)</legend>
+        <label>
+          <select name="volet">
+            <option value="">-- Choisir --</option>
+            <option>Roulant</option>
+            <option>Battant</option>
+            <option>Coulissant</option>
+            <option>Persienne</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🧊 Type de vitrage souhaité</legend>
+        <label>
+          <select name="vitrage">
+            <option value="">-- Choisir --</option>
+            <option>Double vitrage</option>
+            <option>Triple vitrage</option>
+            <option>Phonique</option>
+            <option>Sécurisé</option>
+            <option>Dépoli</option>
+          </select>
+        </label>
+        <label><input type="text" name="vitrage_prec" placeholder="Détail complémentaire..." /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🚪 Sens d’ouverture</legend>
+        <label>Type :
+          <select name="ouverture_type">
+            <option value="">-- Choisir --</option>
+            <option>Intérieur - Poussée gauche</option>
+            <option>Intérieur - Poussée droite</option>
+            <option>Extérieur - Poussée gauche</option>
+            <option>Extérieur - Poussée droite</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🎨 Habillage / Finitions</legend>
+        <label>Habillage intérieur : <input type="text" name="habillage_interieur" /></label>
+        <label>Habillage extérieur : <input type="text" name="habillage_exterieur" /></label>
+<label>Autres précisions sur les finitions : <input type="text" name="habillage_precisions" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🚧 Accessibilité du chantier</legend>
+        <label>Difficulté :
+          <select name="accessibilite">
+            <option>Facile</option>
+            <option>Modérée</option>
+            <option>Difficile</option>
+          </select>
+        </label>
+        <label>Nombre d’intervenants :
+          <select name="intervenants">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🛠 Contraintes techniques</legend>
+        <textarea name="remarques" rows="4" placeholder="Notez ici tout détail important..."></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>📸 Photos</legend>
+        <label>Téléverser des photos : <input type="file" name="photos" multiple accept="image/*" /></label>
+      </fieldset>
+
+      <button type="submit">Envoyer la fiche</button>
+    </form>
+  </div>
+</body>
+</html>
