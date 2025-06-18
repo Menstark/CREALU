@@ -3,31 +3,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>CREALU - Outil de Prise de Mesure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CREALU - Fiche de Prise de Mesure</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>CREALU - Prise de Côtes Chantier</h1>
-  <div id="chantier-init">
-    <label>Référence Chantier : <input id="ref" /></label>
-    <label>Adresse : <input id="adresse" /></label>
-    <label>Client : <input id="client" /></label>
-    <label>Relevé par : <input id="releveur" /></label>
-    <label>Date : <input type="date" id="date" /></label>
-    <button onclick="demarrerChantier()">Démarrer</button>
-  </div>
-
-  <div id="chantier-main" style="display:none;">
-    <h2 id="chantier-titre"></h2>
-    <button onclick="ajouterPiece()">➕ Ajouter une pièce</button>
-    <div id="liste-pieces"></div>
-    <h3>Signature Client</h3>
-    <canvas id="signature" width="300" height="150" style="border:1px solid black;"></canvas>
-    <button onclick="resetSignature()">🧹 Effacer</button>
-    <button onclick="genererPDF()">📄 Générer PDF</button>
-    <button onclick="envoyerFormulaire()">📤 Envoyer à CREALU</button>
-  </div>
-
-  <script src="script.js"></script>
+  <header>
+    <img src="logo-crealu.png" alt="Logo CREALU" class="logo" />
+    <h1>Fiche de Prise de Mesure - Chantier</h1>
+  </header>
+  <main>
+    <section>
+      <label for="chantier">Nom du chantier :</label>
+      <input type="text" id="chantier" name="chantier" />
+    </section>
+    <section>
+      <label for="piece">Ajouter une pièce :</label>
+      <input type="text" id="piece" name="piece" />
+      <button onclick="alert('Ajout de pièce simulé')">Ajouter</button>
+    </section>
+    <p style="color: grey;">⚠ Ceci est une version de prévisualisation partielle pour vérification</p>
+  </main>
 </body>
 </html>
