@@ -2,153 +2,147 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fiche de Prise de Côtes</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiche de Prise de Côtes - Maison Complète</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script defer>
+    let currentRoom = 'entrée';
+    const rooms = ['entrée', 'salon', 'cuisine', 'wc', 'salle de bain', 'chambre 1', 'chambre 2', 'chambre 3', 'bureau', 'garage', 'autre'];
+    const formData = {};
+
+    function switchRoom(room) {
+      currentRoom = room;
+      document.getElementById('room-title').innerText = room.toUpperCase();
+      document.getElementById('form-zone').reset();
+      if (formData[room]) {
+        document.getElementById('type-ouverture').value = formData[room].type || '';
+        document.getElementById('dimensions').value = formData[room].dimensions || '';
+        document.getElementById('remarques').value = formData[room].remarques || '';
+      }
+    }
+
+    function saveRoomData() {
+      const fileInput = document.getElementById('photo');
+      const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : '';
+      formData[currentRoom] = {
+        type: document.getElementById('type-ouverture').value,
+        dimensions: document.getElementById('dimensions').value,
+        remarques: document.getElementById('remarques').value,
+        photo: fileName
+      };
+      alert('Données enregistrées pour ' + currentRoom);
+    }
+
+    function showSummary() {
+      const summary = Object.entries(formData).map(([room, data]) => {
+        return `<div class='mb-2'><strong>${room.toUpperCase()}</strong><br>Type: ${data.type}<br>Dimensions: ${data.dimensions}<br>Remarques: ${data.remarques}<br>Photo: ${data.photo || 'Non fournie'}</div>`;
+      }).join('');
+      document.getElementById('summary-zone').innerHTML = summary;
+    }
+
+    function downloadPDF() {
+      const printContents = document.getElementById('summary-container').innerHTML;
+      const originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      location.reload();
+    }
+  </script>
 </head>
-<body>
-  <div class="logo-container"><img src="logo-crealu.png" alt="Logo CREALU" /></div>
-  <div class="container">
-    <h1>Fiche de Prise de Côtes</h1>
-    <form name="fiche-cotes" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="fiche-cotes" />
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6">
+    <h1 class="text-2xl font-bold mb-4">Fiche de Prise de Côtes - Maison Complète</h1>
+    <div class="mb-4">
+      <label for="room-selector" class="block font-semibold mb-1">Choisir une pièce :</label>
+      <select id="room-selector" class="border p-2 rounded w-full" onchange="switchRoom(this.value)">
+        <option value="entrée">Entrée</option>
+        <option value="salon">Salon</option>
+        <option value="cuisine">Cuisine</option>
+        <option value="wc">WC</option>
+        <option value="salle de bain">Salle de Bain</option>
+        <option value="chambre 1">Chambre 1</option>
+        <option value="chambre 2">Chambre 2</option>
+        <option value="chambre 3">Chambre 3</option>
+        <option value="bureau">Bureau</option>
+        <option value="garage">Garage</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
 
-      <fieldset>
-        <legend>🧾 Informations Générales</legend>
-        <label>Nom du client : <input type="text" name="client_nom" required /></label>
-        <label>Adresse du chantier : <input type="text" name="adresse" required /></label>
-        <label>Date de relevé : <input type="date" name="date" required /></label>
-        <label>Relevé effectué par : <input type="text" name="releveur" required /></label>
-        <label>Type de bien :
-          <select name="type_bien" required>
-            <option value="">-- Choisir --</option>
-            <option>Appartement</option>
-            <option>Maison individuelle</option>
-            <option>Local commercial</option>
-            <option>Autre</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🪟 Type d’ouverture à relever</legend>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="ouverture" value="Fenêtre" /> Fenêtre</label>
-          <label><input type="checkbox" name="ouverture" value="Porte-fenêtre" /> Porte-fenêtre</label>
-          <label><input type="checkbox" name="ouverture" value="Porte d’entrée" /> Porte d’entrée</label>
-          <label><input type="checkbox" name="ouverture" value="Baie vitrée" /> Baie vitrée</label>
-          <label><input type="checkbox" name="ouverture" value="Volet roulant" /> Volet roulant</label>
-          <label><input type="checkbox" name="ouverture" value="Store" /> Store</label>
-          <label><input type="checkbox" name="ouverture" value="Moustiquaire" /> Moustiquaire</label>
-          <label><input type="checkbox" name="ouverture" value="Grille métallique" /> Grille métallique</label>
-          <label><input type="checkbox" name="ouverture" value="Porte de garage" /> Porte de garage</label>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>📏 Prise de Côtes</legend>
-        <label>Largeur tableau (mm) : <input type="number" name="largeur" required /></label>
-        <label>Hauteur tableau (mm) : <input type="number" name="hauteur" required /></label>
-        <label>Épaisseur mur (mm) : <input type="number" name="epaisseur" required /></label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🧩 Pose souhaitée</legend>
-        <label>
-          <select name="pose" required>
-            <option value="">-- Choisir --</option>
-            <option>Neuf (en applique)</option>
-            <option>Rénovation (feuillure ou tunnel)</option>
-            <option>Rénovation partielle</option>
-            <option>Dépose totale</option>
-            <option>À préciser</option>
-          </select>
-        </label>
-        <label>Précisez les particularités de pose : <input type="text" name="pose_details" /></label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🔩 Menuiserie</legend>
-        <label>Menuiserie actuelle :
-          <select name="menuiserie_actuelle">
-            <option value="">-- Choisir --</option>
-            <option>Bois</option>
-            <option>Aluminium</option>
-            <option>PVC</option>
-            <option>Acier</option>
-            <option>Bois / Aluminium</option>
-            <option>PVC / Aluminium</option>
-            <option>Matériaux composites</option>
-          </select>
-        </label>
-        <label><input type="text" name="menuiserie_actuelle_prec" placeholder="Précision..." /></label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🪞 Type de volet (si présent)</legend>
-        <label>
-          <select name="volet">
-            <option value="">-- Choisir --</option>
-            <option>Roulant</option>
-            <option>Battant</option>
-            <option>Coulissant</option>
-            <option>Persienne</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🚪 Sens d’ouverture</legend>
-        <label>Type :
-          <select name="ouverture_type">
-            <option value="">-- Choisir --</option>
-            <option>Intérieur - Poussée gauche</option>
-            <option>Intérieur - Poussée droite</option>
-            <option>Extérieur - Poussée gauche</option>
-            <option>Extérieur - Poussée droite</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🎨 Habillage / Finitions</legend>
-        <label>Habillage intérieur : <input type="text" name="habillage_interieur" /></label>
-        <label>Habillage extérieur : <input type="text" name="habillage_exterieur" /></label>
-        <label>Autres précisions sur les finitions : <input type="text" name="habillage_precisions" /></label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🚧 Accessibilité du chantier</legend>
-        <label>Difficulté :
-          <select name="accessibilite">
-            <option>Facile</option>
-            <option>Modérée</option>
-            <option>Difficile</option>
-          </select>
-        </label>
-        <label>Nombre d’intervenants :
-          <select name="intervenants">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </label>
-      </fieldset>
-
-      <fieldset>
-        <legend>🛠 Contraintes techniques</legend>
-        <textarea name="remarques" rows="4" placeholder="Notez ici tout détail important..."></textarea>
-      </fieldset>
-
-      <fieldset>
-        <legend>📸 Photos</legend>
-        <label>Téléverser des photos : <input type="file" name="photos" multiple accept="image/*" /></label>
-      </fieldset>
-
-      <button type="submit">Envoyer la fiche</button>
+    <h2 class="text-xl font-semibold mt-4 mb-2" id="room-title">ENTRÉE</h2>
+    <form id="form-zone" class="space-y-4">
+      <div>
+        <label for="type-ouverture" class="block font-medium">Type d'ouverture :</label>
+        <select id="type-ouverture" class="border p-2 rounded w-full">
+          <option value="">-- Sélectionner --</option>
+          <option>Fenêtre</option>
+          <option>Porte-fenêtre</option>
+          <option>Volet roulant</option>
+          <option>Moustiquaire</option>
+          <option>Store banne</option>
+          <option>Porte d'entrée</option>
+          <option>Grille métallique</option>
+          <option>Porte de garage</option>
+        </select>
+      </div>
+      <div>
+        <label for="dimensions" class="block font-medium">Dimensions (L x H en mm) :</label>
+        <input type="text" id="dimensions" class="border p-2 rounded w-full" placeholder="Ex: 1200 x 1350">
+      </div>
+      <div>
+        <label for="remarques" class="block font-medium">Remarques :</label>
+        <textarea id="remarques" class="border p-2 rounded w-full" rows="3"></textarea>
+      </div>
+      <div>
+        <label for="photo" class="block font-medium">Photo (facultative) :</label>
+        <input type="file" id="photo" class="border p-2 rounded w-full">
+      </div>
+      <div class="flex justify-between">
+        <button type="button" onclick="saveRoomData()" class="bg-blue-600 text-white px-4 py-2 rounded">Enregistrer</button>
+        <button type="button" onclick="showSummary()" class="bg-green-600 text-white px-4 py-2 rounded">Voir le résumé</button>
+      </div>
     </form>
+
+    <div class="mt-6" id="summary-container">
+      <h2 class="text-xl font-semibold mb-2">Résumé final</h2>
+      <div id="summary-zone" class="bg-gray-50 border rounded p-4"></div>
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold mb-1">Signature du client :</h3>
+        <canvas id="signature" class="border w-full h-32 mb-2 bg-white"></canvas>
+        <button onclick="clearSignature()" class="bg-gray-500 text-white px-3 py-1 rounded">Effacer</button>
+      </div>
+      <div class="mt-4 text-right">
+        <button onclick="downloadPDF()" class="bg-purple-600 text-white px-4 py-2 rounded">Exporter / Imprimer</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const canvas = document.getElementById('signature');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('mousedown', () => drawing = true);
+    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mouseout', () => drawing = false);
+    canvas.addEventListener('mousemove', draw);
+
+    function draw(e) {
+      if (!drawing) return;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#000';
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    }
+
+    function clearSignature() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
 </body>
 </html>
