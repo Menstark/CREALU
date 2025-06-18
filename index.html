@@ -3,24 +3,39 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>CREALU - Fiche Prise de Mesure</title>
+  <title>CREALU - Dossier de Prise de Mesure</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Fiche de Prise de Mesure CREALU</h1>
-  <div id="chantier-setup">
+  <h1>Dossier Chantier - CREALU</h1>
+  <div id="chantier-info">
     <label>Référence Chantier : <input type="text" /></label>
-    <label>Adresse : <input type="text" /></label>
-    <label>Relevé par : <input type="text" /></label>
+    <label>Adresse du chantier : <input type="text" /></label>
+    <label>Nom du client : <input type="text" /></label>
+    <label>Relevé effectué par : <input type="text" /></label>
     <label>Date : <input type="date" /></label>
+    <label>Type de bien :
+      <select>
+        <option>Maison</option>
+        <option>Appartement</option>
+        <option>Local professionnel</option>
+        <option>Autre</option>
+      </select>
+    </label>
+    <textarea placeholder="Remarques générales..."></textarea>
   </div>
-  <div id="pieces-container">
-    <!-- Conteneur pour les pièces -->
+
+  <div id="pieces-section">
+    <button onclick="ajouterPiece()">➕ Ajouter une pièce</button>
+    <div id="liste-pieces"></div>
   </div>
-  <button onclick="ajouterPiece()">➕ Ajouter une pièce</button>
-  <button onclick="genererPDF()">📄 Générer PDF</button>
+
+  <div id="actions">
+    <button onclick="genererPDF()">📄 Générer PDF</button>
+    <button onclick="envoyerFormulaire()">📤 Envoyer à CREALU</button>
+  </div>
+
   <canvas id="signature" width="300" height="150" style="border:1px solid #000;"></canvas>
-  <button onclick="envoyerFormulaire()">📤 Envoyer à CREALU</button>
   <script src="script.js"></script>
 </body>
 </html>
