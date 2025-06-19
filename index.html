@@ -3,17 +3,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <title>CREALU - Prise de mesure complète</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CREALU - Gestion de Chantier</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>📋 Création et gestion de dossiers chantier - CREALU</h1>
+    <h1>🧾 Création de dossier chantier - CREALU</h1>
+    <input type="text" id="refChantier" placeholder="Référence du chantier" />
+    <input type="text" id="nomClient" placeholder="Nom du client" />
+    <input type="text" id="adresse" placeholder="Adresse du chantier" />
+    <button onclick="createDossier()">Créer Dossier</button>
   </header>
   <main>
-    <button onclick="newProject()">➕ Nouveau Dossier Chantier</button>
-    <div id="projects"></div>
+    <section id="dossierSection" style="display:none;">
+      <h2 id="dossierTitre"></h2>
+      <button onclick="ajouterPiece()">➕ Ajouter une pièce</button>
+      <div id="listePieces"></div>
+      <button onclick="finaliser()">📤 Finaliser et envoyer</button>
+    </section>
   </main>
   <script src="script.js"></script>
 </body>
