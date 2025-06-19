@@ -1,22 +1,13 @@
 
-function ajouterPiece() {
-  const container = document.getElementById('piecesContainer');
-  const div = document.createElement('div');
-  div.innerHTML = `
-    <h3>Nouvelle Pièce</h3>
-    <label>Nom de la pièce : <input type="text" name="piece[]" required></label>
-    <label>Type de produit : 
-      <select name="produit[]">
-        <option value="fenetre">Fenêtre</option>
-        <option value="volet">Volet roulant</option>
-        <option value="store">Store banne</option>
-        <option value="moustiquaire">Moustiquaire</option>
-      </select>
-    </label>
-    <label>Largeur (mm) : <input type="number" name="largeur[]" required></label>
-    <label>Hauteur (mm) : <input type="number" name="hauteur[]" required></label>
-    <label>Photo (obligatoire) : <input type="file" name="photo[]" accept="image/*" required></label>
-  `;
-  container.appendChild(div);
+function newProject() {
+  const name = prompt("Nom du dossier chantier ?");
+  if (name) {
+    const project = document.createElement("div");
+    project.textContent = "📁 " + name + " (cliquez pour ouvrir)";
+    project.style.cursor = "pointer";
+    project.style.padding = "8px";
+    project.style.border = "1px solid #ccc";
+    project.style.marginBottom = "10px";
+    document.getElementById("projects").appendChild(project);
+  }
 }
-    
