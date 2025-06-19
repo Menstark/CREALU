@@ -1,1 +1,1 @@
-// JavaScript de base pour ajout de pièces et produits
+// JS pour ajouter pièces et produits dynamiquement
