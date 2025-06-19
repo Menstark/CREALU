@@ -1,1 +1,1 @@
-// JS pour ajouter pièces et produits dynamiquement
+// JS gérant ajout de pièces, produits, photos et signature métreur

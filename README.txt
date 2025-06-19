@@ -1,13 +1,13 @@
-Version fonctionnelle de base de l'outil CREALU
+Version fonctionnelle complète de l'outil CREALU.
 
-Contenu :
-- Création dossier chantier
-- Ajout de pièces (Cuisine, Salon...)
-- Ajout de produits par pièce
-- Champs techniques de base pour fenêtres et volets roulants
-- Photo obligatoire (min. 1) par produit
-- Signature du métreur
-- Interface CREALU (HTML/CSS)
-- Navigation intuitive étape par étape
-
-À ajouter ensemble ensuite : PDF, envoi email, verrouillage total
+Fonctionnalités incluses :
+- Création du dossier chantier (référence, releveur, lieu...)
+- Ajout dynamique de pièces (Cuisine, Salon, etc.)
+- Ajout de plusieurs produits par pièce
+- Navigation étape par étape selon le type de produit
+- Champs techniques pour menuiserie, volet, moustiquaire, store, etc.
+- Minimum 1 photo obligatoire par produit
+- Signature du métreur obligatoire avant validation
+- Interface claire inspirée de crealu.netlify.app
+- Affichage dynamique des champs
+- Préparation à la génération PDF et envoi email (à intégrer ensuite)
