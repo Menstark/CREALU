@@ -1,1 +1,42 @@
-<!DOCTYPE html><html><head><title>CREALU</title></head><body>Interface HTML CREALU avec fiches par pièces et produits</body></html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fiche Prise de Mesure - CREALU</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Fiche de Prise de Mesure - CREALU</h1>
+  </header>
+  <main>
+    <form id="chantierForm">
+      <section>
+        <h2>Dossier Chantier</h2>
+        <label>Référence chantier : <input type="text" name="ref" required></label>
+        <label>Client : <input type="text" name="client" required></label>
+        <label>Adresse chantier : <input type="text" name="adresse" required></label>
+        <label>Releveur : <input type="text" name="releveur" required></label>
+        <label>Date : <input type="date" name="date" required></label>
+      </section>
+
+      <section id="piecesContainer">
+        <h2>Pièces</h2>
+        <button type="button" onclick="ajouterPiece()">+ Ajouter une pièce</button>
+      </section>
+
+      <section>
+        <h2>Signature du métreur</h2>
+        <input type="text" name="signature" placeholder="Nom du métreur" required>
+      </section>
+
+      <button type="submit">Valider et enregistrer</button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+    
