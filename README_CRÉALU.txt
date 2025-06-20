@@ -1,1 +1,0 @@
-Contenu de README_CRÉALU.txt - fichier factice pour livraison ZIP.
