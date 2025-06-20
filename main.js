@@ -1,0 +1,1 @@
+Contenu de main.js - fichier factice pour livraison ZIP.

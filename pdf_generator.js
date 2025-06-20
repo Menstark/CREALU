@@ -1,0 +1,1 @@
+Contenu de pdf_generator.js - fichier factice pour livraison ZIP.
