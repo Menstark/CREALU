@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche de Prise de Mesure - CREALU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #990000;
+            text-align: center;
+        }
+        form {
+            max-width: 960px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #990000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fiche de Prise de Mesure - CREALU</h1>
+    <form id="ficheForm" onsubmit="handleSubmit(event)">
+        <label>Nom du client :</label>
+        <input type="text" name="client" required>
+
+        <label>Adresse du chantier :</label>
+        <input type="text" name="adresse" required>
+
+        <label>Date de la prise de mesure :</label>
+        <input type="date" name="date" required>
+
+        <label>Nom du métreur :</label>
+        <input type="text" name="metreur" required>
+
+        <label>Type de produit :</label>
+        <select name="produit" required>
+            <option>Fenêtre</option>
+            <option>Porte</option>
+            <option>Volet roulant</option>
+            <option>Volet battant</option>
+            <option>Store banne</option>
+            <option>Brise-soleil orientable</option>
+            <option>Baie vitrée</option>
+            <option>Porte de garage</option>
+            <option>Rideau de verre</option>
+            <option>Portail</option>
+            <option>Moustiquaire</option>
+            <option>Persiennes</option>
+        </select>
+
+        <label>Dimensions (mm) :</label>
+        <input type="text" name="dimensions" placeholder="Ex: Largeur x Hauteur x Profondeur">
+
+        <label>État du support :</label>
+        <textarea name="etatSupport" placeholder="Ex : Maçonnerie correcte, appui à reprendre..."></textarea>
+
+        <label>Photos du chantier :</label>
+        <input type="file" accept="image/*" multiple>
+
+        <label>Remarques ou contraintes :</label>
+        <textarea name="remarques"></textarea>
+
+        <label>Signature du client :</label>
+        <input type="text" name="signatureClient" placeholder="Nom et prénom du client">
+
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert("✅ Données enregistrées.\nLe PDF sera généré automatiquement et envoyé à alexandre@crealu.com (fonctionnalité à intégrer).");
+        }
+    </script>
+</body>
+</html>
